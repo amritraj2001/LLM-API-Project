@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  rag-app:
+    build: .
+    container_name: rag_app_container
+    ports:
+      - "8501:8501"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - HF_TOKEN=${HF_TOKEN}
+    volumes:
+      - ./research_papers:/app/research_papers
