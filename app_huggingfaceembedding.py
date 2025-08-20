@@ -21,11 +21,11 @@ if os.path.exists("/etc/secrets/.env"):
 else:
     load_dotenv()
 
-HF_TOKEN = os.getenv("HF_TOKEN")
+HF_TOKEN = os.getenv("HF_API_KEY")
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
-if HF_TOKEN is None:
-    raise ValueError("HF_TOKEN is missing! Please set it in Render Secret Files.")
+if HF_API_KEY is None:
+    raise ValueError("HF_API_KEY is missing! Please set it in Render Secret Files.")
 if GROQ_API_KEY is None:
     raise ValueError("GROQ_API_KEY is missing! Please set it in Render Secret Files.")
 
@@ -81,6 +81,7 @@ if user_prompt:
         for i,doc in enumerate(response['context']):
             st.write(doc.page_content)
             st.write('------------------------')
+
 
 
 
