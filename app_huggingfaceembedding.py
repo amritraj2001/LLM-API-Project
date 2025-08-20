@@ -1,5 +1,9 @@
 import streamlit as st
+import streamlit as st
 import os
+import time
+
+from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.chains.combine_documents import create_stuff_documents_chain
@@ -7,17 +11,16 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain.chains import create_retrieval_chain
 from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import PyPDFDirectoryLoader
-import openai
+from langchain_huggingface import HuggingFaceEmbeddings
 
-from dotenv import load_dotenv
-
-# Load secrets (Render mounts secrets into /etc/secrets/.env, fallback to local .env)
+# -------------------------------
+# Load API Keys
+# -------------------------------
 if os.path.exists("/etc/secrets/.env"):
     load_dotenv("/etc/secrets/.env")
 else:
     load_dotenv()
 
-# Fetch tokens safely
 HF_TOKEN = os.getenv("HF_TOKEN")
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
@@ -78,6 +81,7 @@ if user_prompt:
         for i,doc in enumerate(response['context']):
             st.write(doc.page_content)
             st.write('------------------------')
+
 
 
 
