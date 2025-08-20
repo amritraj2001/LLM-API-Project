@@ -9,3 +9,4 @@ openai
 python-dotenv
 faiss-cpu
 pypdf
+sentence-transformers   # 🔥 added
